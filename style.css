@@ -1,0 +1,116 @@
+@font-face {
+    font-family: Montserrat;
+    src: url("./assets/fonts/Montserrat-VariableFont_wght.ttf");
+};
+@font-face {
+    font-family: Fredoka One;
+    src: url("./assets/fonts/FredokaOne-Regular.ttf");
+};
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-clr: #F5F5F5;
+    --bg-header: #EF476F;
+    --btn-clr: #118AB2;
+    --todo-clr: #ffffff;
+    --todo-done: #06D6A0;
+    --focus-clr: #F5AB00;
+    --font-clr: #073B4C;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    color: var(--font-clr);
+    background-color: var(--bg-clr);
+}
+
+h1 {
+    font-family: FredokaOne-Regular, sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    text-shadow: 2px 3px var(--btn-clr), 4px 5px var(--focus-clr);
+    padding: 2rem 0 3rem 0;
+}
+
+.main-header{
+    background-color:var(--bg-header);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color: var(--todo-clr);
+}
+
+.visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    margin: -1px;
+
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.add {
+    padding: 2rem;
+    margin: auto;
+    text-align: center;
+}
+
+#new-todo {
+    all: unset;
+    background-color: var(--todo-clr);
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: .5rem;
+    text-align: left;
+    width: 20rem;
+}
+
+.btn{
+    all: unset;
+    background-color: var(--btn-clr);
+    padding: .5rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    margin: 1rem;
+    color: var(--bg-clr);
+    box-shadow: 3px 3px var(--bg-header);
+}
+
+h2{
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+.filter {
+    margin: 1rem;
+}
+
+input[type=radio]{
+    margin: .5rem;
+    transform: scale(1.5);
+}
+
+.filter div {
+    font-size: 1.2rem;
+}
+
+.output {
+    margin-top: 1rem;
+}
+
+
