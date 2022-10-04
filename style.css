@@ -41,6 +41,12 @@ h1 {
     padding: 2rem 0 3rem 0;
 }
 
+main {
+    max-width:600px;
+    width: 90vw;
+    margin: auto;
+}
+
 .main-header{
     background-color:var(--bg-header);
     display: flex;
@@ -113,4 +119,22 @@ input[type=radio]{
     margin-top: 1rem;
 }
 
+li {
+    list-style-type: none;
+    background-color: var(--todo-clr);
+    margin-top: 1rem;
+    padding: .5rem;
+    display:flex;
+    gap: 1rem;
+    font-size: 1rem;
+}
+
+.checkbox{
+    padding: 1rem;
+    transform: scale(2);
+}
+
+.checkbox:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden='true' focusable='false' %3E%3Cpath fill='none' stroke='white' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /%3E%3C/svg%3E");
+  }
 
