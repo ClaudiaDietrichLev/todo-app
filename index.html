@@ -26,20 +26,18 @@
                 <h2>
                     Filter & Options
                 </h2>
-                <article class="filter">
-                    <div>
-                        <input type="radio" name="filter" id="filter-all" value="all">
-                        <label for="filter-all">All</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="filter" id="filter-open" value="open">
-                        <label for="filter-open">Open</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="filter" id="filter-done" value="done>
-                        <label for="filter-done">Done</label>
-                    </div>
-                </article>
+                <label class="container-filter">All
+                    <input type="radio" name="filter" id="filter-all" value="all">
+                    <span class="checkmark-filter"></span>
+                </label>
+                <label class="container-filter">Open
+                    <input type="radio" name="filter" id="filter-open" value="open">
+                    <span class="checkmark-filter"></span>
+                </label>
+                <label class="container-filter">Done
+                    <input type="radio" name="filter" id="filter-done" value="done">
+                    <span class="checkmark-filter"></span>
+                </label>
                 <button class="btn remove">Remove Done Todos</button>
             </section>
         </header>
@@ -47,7 +45,9 @@
             <h2 class="output">
                 Your ToDos
             </h2>
-            <ul id="todo-list"></ul>
+            <ul id="todo-list">
+            </ul>
+            
         </section>
     </main>
     <script src="script.js"></script>

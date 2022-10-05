@@ -25,16 +25,22 @@ function renderTodos(){
 
     for (let todo of stateTodo.todos){
         let toDoLi = document.createElement("li");
+        const label = document.createElement("label");
+        label.className = "container-todos";
+        const span = document.createElement("span");
+        span.className = "checkmark"
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = todo.done;
-        checkbox.className = "checkbox"
-        toDoLi.appendChild(checkbox);
+        toDoLi.appendChild(label);
+        const todoText = document.createTextNode(todo.desc);
+        label.appendChild(todoText);
+        label.appendChild(checkbox);
+        label.appendChild(span);
 
         toDoLi.todoObj = todo;
 
-        const todoText = document.createTextNode(todo.desc);
-        toDoLi.appendChild(todoText);
+        
         console.log(toDoLi);
         output.appendChild(toDoLi);
     }
@@ -45,13 +51,13 @@ renderTodos();
 addBtn.addEventListener("click", addTodo);
 
 function addTodo (){
-    if (newTodo.value.length < 3){
+    if (newTodo.value.length < 5){
         return;
     }
     const ToDo = newTodo.value;
     stateTodo.todos.push({desc: ToDo, done: false});
     newTodo.value = "";
-    renderHTML();
+    renderTodos();
     console.log (stateTodo)
 }
 
