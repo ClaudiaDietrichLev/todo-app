@@ -221,3 +221,7 @@ li:focus-within{
     border: 2px solid var(--focus-clr);
     box-shadow: 3px 3px var(--bg-header);
 }
+
+.todo-done {
+    text-decoration: line-through;
+}
