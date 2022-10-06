@@ -1,4 +1,11 @@
-const stateTodo = {
+/*read state from localstorage*/
+
+const stateTodo = JSON.parse(localStorage.getItem("stateTodo")) || {filter: "filter-all", todos: []};
+console.log(stateTodo);
+
+
+
+const astateTodo = {
     filter: "filter-all",
     todos: [
         {desc: "Learn HTML",
@@ -9,6 +16,8 @@ const stateTodo = {
         done: false},
     ]
 }
+
+
 
 /*Todos in an array */
 let todos = stateTodo.todos;
@@ -42,6 +51,8 @@ renderTodos(todos);
 
 filterRadio.addEventListener("change", function (e){
     const filterType = e.target.value;
+    stateTodo.filter = filterType;
+    saveStateTodo(stateTodo);
     switch (filterType) {
         case "filter-all":
             renderTodos(todos);
@@ -62,6 +73,8 @@ addBtn.addEventListener("click", addTodo);
 deleteBtn.addEventListener("click", function (){
     todos = todos.filter(todo => !todo.done);
     renderTodos(todos);
+    stateTodo.todos = todos;
+    saveStateTodo(stateTodo)
 })
 
 const list = document.querySelector("#todo-list");
@@ -76,6 +89,7 @@ list.addEventListener("change", function (e) {
     } else {
         todoText.classList.remove('todo-done');
     }
+    saveStateTodo(stateTodo);
 })
 
 
@@ -131,5 +145,10 @@ function addTodo (){
     stateTodo.todos.push({desc: ToDo, done: false});
     newTodo.value = "";
     renderTodos(todos);
+    saveStateTodo(stateTodo);
 }
 
+function saveStateTodo (stateTodo){
+    localStorage.setItem("stateTodo", JSON.stringify(stateTodo));
+    console.log(stateTodo);
+}
