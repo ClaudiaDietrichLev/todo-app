@@ -1,227 +1,223 @@
 @font-face {
-    font-family: Montserrat;
-    src: url("./assets/fonts/Montserrat-VariableFont_wght.ttf");
-};
+  font-family: Montserrat;
+  src: url('./assets/fonts/Montserrat-VariableFont_wght.ttf');
+}
 @font-face {
-    font-family: Fredoka One;
-    src: url("./assets/fonts/FredokaOne-Regular.ttf");
-};
+  font-family: Fredoka One;
+  src: url('./assets/fonts/FredokaOne-Regular.ttf');
+}
 
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-    --bg-clr: #F5F5F5;
-    --bg-header: #EF476F;
-    --btn-clr: #118AB2;
-    --todo-clr: #ffffff;
-    --todo-done: #06D6A0;
-    --focus-clr: #F5AB00;
-    --font-clr: #073B4C;
-
+  --bg-clr: #f5f5f5;
+  --bg-header: #ef476f;
+  --btn-clr: #118ab2;
+  --todo-clr: #ffffff;
+  --todo-done: #06d6a0;
+  --focus-clr: #f5ab00;
+  --font-clr: #073b4c;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Montserrat, sans-serif;
-    font-size: 14px;
-    color: var(--font-clr);
-    background-color: var(--bg-clr);
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  color: var(--font-clr);
+  background-color: var(--bg-clr);
 }
 
 h1 {
-    font-family: FredokaOne-Regular, sans-serif;
-    font-size: 3rem;
-    font-weight: 900;
-    text-shadow: 2px 3px var(--btn-clr), 4px 5px var(--focus-clr);
-    padding: 2rem 0 3rem 0;
+  font-family: FredokaOne-Regular, sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  text-shadow: 2px 3px var(--btn-clr), 4px 5px var(--focus-clr);
+  padding: 2rem 0 3rem 0;
 }
 
 main {
-    max-width:600px;
-    width: 90vw;
-    margin: auto;
+  max-width: 600px;
+  width: 90vw;
+  margin: auto;
 }
 
-.main-header{
-    background-color:var(--bg-header);
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    color: var(--todo-clr);
+.main-header {
+  background-color: var(--bg-header);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--todo-clr);
 }
 
 .visually-hidden {
-    position: absolute;
+  position: absolute;
 
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    border: 0;
-    margin: -1px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
 
-    clip: rect(0, 0, 0, 0);
-    overflow: hidden;
-    white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .add {
-    padding: 2rem;
-    margin: auto;
-    text-align: center;
+  padding: 2rem;
+  margin: auto;
+  text-align: center;
 }
 
 #new-todo {
-    all: unset;
-    background-color: var(--todo-clr);
-    border-radius: 5px;
-    font-size: 1rem;
-    padding: .5rem;
-    text-align: left;
-    width: 15rem;
+  all: unset;
+  background-color: var(--todo-clr);
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  text-align: left;
+  width: 15rem;
 }
 
 #new-todo:focus,
 .btn:focus {
-    border: 2px solid var(--focus-clr);
+  border: 2px solid var(--focus-clr);
 }
 
-.btn{
-    all: unset;
-    background-color: var(--btn-clr);
-    padding: .5rem;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    margin: 1rem;
-    color: var(--bg-clr);
-    box-shadow: 3px 3px var(--bg-header);
-    border: 2px solid var(--btn-clr);
+.btn {
+  all: unset;
+  background-color: var(--btn-clr);
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  margin: 1rem;
+  color: var(--bg-clr);
+  box-shadow: 3px 3px var(--bg-header);
+  border: 2px solid var(--btn-clr);
 }
 
-h2{
-    margin: 0;
-    font-weight: 900;
-    font-size: 1.5rem;
+h2 {
+  margin: 0;
+  font-weight: 900;
+  font-size: 1.5rem;
 }
 
 /* Customize the label (the container) */
 .container-filter {
-    display: block;
-    position: relative;
-    padding: .75rem;
-    padding-left: 2.5rem;
-    cursor: pointer;
-    font-size: 1.25rem;
-    user-select: none;
-  }
-  
-  /* Hide the browser's default radio button */
-  .container-filter input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-  /* Create a custom radio button */
-  .checkmark-filter {
-    position: absolute;
-    top: .75rem;
-    left: 0.5rem;
-    height: 1.25rem;;
-    width: 1.25rem;
-    border: 2px solid black;
-    border-radius: 50%;
-  }
-  
-  /* On mouse-over, add a yellow border */
-  .container-filter:hover input ~ .checkmark-filter {
-    border: 2px solid var(--focus-clr);
-  }
-  
-  /* When the radio button is checked, add a blue background */
-  .container-filter input:checked ~ .checkmark-filter {
-    background-color: var(--btn-clr);
-  }
+  display: block;
+  position: relative;
+  padding: 0.75rem;
+  padding-left: 2.5rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+  user-select: none;
+}
 
+/* Hide the browser's default radio button */
+.container-filter input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark-filter {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.5rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a yellow border */
+.container-filter:hover input ~ .checkmark-filter {
+  border: 2px solid var(--focus-clr);
+}
+
+/* When the radio button is checked, add a blue background */
+.container-filter input:checked ~ .checkmark-filter {
+  background-color: var(--btn-clr);
+}
 
 .filter {
-    margin: 1rem;
+  margin: 1rem;
 }
 
 .output {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 li {
-    list-style-type: none;
-    margin-top: 1rem;
-    border: 2px solid var(--todo-clr);
-    border-radius: 5px;
+  list-style-type: none;
+  margin-top: 1rem;
+  border: 2px solid var(--todo-clr);
+  border-radius: 5px;
 }
 
 /* Customize the label (the container) */
 .container-todos {
-    display: block;
-    position: relative;
-    padding: .75rem;
-    padding-left: 2.5rem;
-    cursor: pointer;
-    font-size: 1.25rem;
-    user-select: none;
-    background-color: var(--todo-clr);
-  }
-  
-  /* Hide the browser's default checkbox */
-  .container-todos input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
-    position: absolute;
-    top: .75rem;
-    left: 0.5rem;
-    height: 1.25rem;;
-    width: 1.25rem;
-    border: 2px solid black;
-    border-radius: 5px;
-  }
-  
-  
-  /* When the checkbox is checked, add a green background */
-  .container-todos input:checked ~ .checkmark {
-    background-color: var(--todo-done);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden='true' focusable='false' %3E%3Cpath fill='none' stroke='white' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /%3E%3C/svg%3E");
-   
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .container-todos input:checked ~ .checkmark:after {
-    display: block;
-  }
-  
-li:focus-within{
-    border: 2px solid var(--focus-clr);
-    box-shadow: 3px 3px var(--bg-header);
+  display: block;
+  position: relative;
+  padding: 0.75rem;
+  padding-left: 2.5rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+  user-select: none;
+  background-color: var(--todo-clr);
+}
+
+/* Hide the browser's default checkbox */
+.container-todos input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.5rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+/* When the checkbox is checked, add a green background */
+.container-todos input:checked ~ .checkmark {
+  background-color: var(--todo-done);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden='true' focusable='false' %3E%3Cpath fill='none' stroke='white' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /%3E%3C/svg%3E");
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-todos input:checked ~ .checkmark:after {
+  display: block;
+}
+
+li:focus-within {
+  border: 2px solid var(--focus-clr);
+  box-shadow: 3px 3px var(--bg-header);
 }
 
 .todo-done {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
