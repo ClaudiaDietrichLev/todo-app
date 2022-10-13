@@ -1,135 +1,114 @@
-/*read state from localstorage*/
+/*Class with all functions about state and render*/
+class TodoApp {
+  constructor(state) {
+    this.state = JSON.parse(localStorage.getItem('stateTodo'));
+    if (this.state === null) {
+      this.state = {
+        filter: 'filter-all',
+        todos: [],
+      };
+    }
+    this.renderHTML();
+    this.setFilter();
+  }
 
-const stateTodo = JSON.parse(localStorage.getItem('stateTodo')) || {
-  filter: 'filter-all',
-  todos: [],
-};
+  renderHTML() {
+    const output = document.querySelector('.todo-list');
+    output.innerHTML = '';
+    for (let todo of this.state.todos) {
+      const newTodoLi = document.createElement('li');
+      newTodoLi.setAttribute('class', 'todo');
+      newTodoLi.todoObj = todo;
+      output.appendChild(newTodoLi);
+      let newTodoHTML = `<label class="container-todos">`;
+      newTodoHTML += `<input type="checkbox"`;
+      if (todo.done) {
+        newTodoHTML += ` checked=${todo.done}`;
+      }
+      newTodoHTML += `><span class="checkmark"></span>`;
+      newTodoHTML += `<span class="todo">${todo.desc}</span></label>`;
+      newTodoLi.innerHTML += newTodoHTML;
+    }
+  }
 
-/*Todos in an array */
-let todos = stateTodo.todos;
+  setFilter() {
+    const filter = '#' + this.state.filter;
+    const filterBtn = document.querySelector(filter);
+    filterBtn.checked = true;
+    this.changeFilter(this.state.filter);
+  }
 
-/*Select the Input-Field for new Todos*/
-const newTodo = document.querySelector('#new-todo');
-if (newTodo === null) {
-  console.error('new-todo is not avaliable');
+  saveState() {
+    localStorage.setItem('stateTodo', JSON.stringify(this.state));
+  }
+
+  changeFilter(filterType) {
+    const savedTodos = this.state.todos;
+    switch (filterType) {
+      case 'filter-all':
+        this.renderHTML();
+        break;
+      case 'filter-open':
+        this.state.todos = this.state.todos.filter((todo) => !todo.done);
+        this.renderHTML();
+        this.state.todos = savedTodos;
+        break;
+      case 'filter-done':
+        this.state.todos = this.state.todos.filter((todo) => todo.done);
+        this.renderHTML();
+        this.state.todos = savedTodos;
+        break;
+    }
+  }
 }
 
-/*select Add-Button*/
-const addBtn = document.querySelector('#add-button');
-if (addBtn === null) {
+const todoApp = new TodoApp();
+
+/*Add new Todo*/
+const addButton = document.querySelector('#add-button');
+if (addButton === null) {
   console.error('add-button is not avaliable');
 }
+addButton.addEventListener('click', function () {
+  const newTodo = document.querySelector('#new-todo');
+  if (newTodo.value.length < 5) {
+    return;
+  }
+  todoApp.state.todos.push({ desc: newTodo.value, done: false });
+  newTodo.value = '';
+  todoApp.renderHTML();
+  todoApp.saveState();
+});
 
-/*select DeleteButton*/
-const deleteBtn = document.querySelector('.remove');
-if (deleteBtn === null) {
+/*Delete done Todos with delete-button*/
+const deleteButton = document.querySelector('#delete-button');
+if (deleteButton === null) {
   console.error('delete-button is not avaliable');
 }
-
-/*select die Gruppe der Filter*/
-const filterRadio = document.querySelector('.filter');
-
-/*Filter aus dem State-Array auslesen und auswählen*/
-setFilter();
-
-/*Die Todos werden gerendert*/
-renderTodos(todos);
-
-filterRadio.addEventListener('change', function (e) {
-  const filterType = e.target.value;
-  stateTodo.filter = filterType;
-  saveStateTodo(stateTodo);
-  switch (filterType) {
-    case 'filter-all':
-      renderTodos(todos);
-      break;
-    case 'filter-open':
-      const todoOpen = todos.filter((todo) => !todo.done);
-      renderTodos(todoOpen);
-      break;
-    case 'filter-done':
-      const todoDone = todos.filter((todo) => todo.done);
-      renderTodos(todoDone);
-      break;
-  }
+deleteButton.addEventListener('click', function () {
+  todos = todoApp.state.todos.filter((todo) => !todo.done);
+  todoApp.state.todos = todos;
+  todoApp.renderHTML();
+  todoApp.saveState();
 });
 
-addBtn.addEventListener('click', addTodo);
+const todoList = document.querySelector('.todo-list');
 
-deleteBtn.addEventListener('click', function () {
-  todos = todos.filter((todo) => !todo.done);
-  renderTodos(todos);
-  stateTodo.todos = todos;
-  saveStateTodo(stateTodo);
-});
-
-const list = document.querySelector('#todo-list');
-
-list.addEventListener('change', function (e) {
+todoList.addEventListener('change', function (e) {
   const todo = e.target.parentElement.parentElement.todoObj;
   const label = e.target.parentElement;
   const todoText = label.querySelector('.todo');
   todo.done = e.target.checked;
-  if (todo.done) {
-    todoText.classList.add('todo-done');
-  } else {
-    todoText.classList.remove('todo-done');
-  }
-  saveStateTodo(stateTodo);
+
+  todoApp.saveState();
 });
 
-function setFilter() {
-  const filter = '#' + stateTodo.filter;
-  const filterBtn = document.querySelector(filter);
-  filterBtn.checked = true;
-}
+/*select die Gruppe der Filter*/
+const filterRadio = document.querySelector('.filter');
 
-function renderTodos(todos) {
-  const output = document.querySelector('#todo-list');
-  output.innerHTML = '';
-
-  for (let todo of todos) {
-    let toDoLi = document.createElement('li');
-
-    const label = document.createElement('label');
-    label.setAttribute('class', 'container-todos');
-
-    const span = document.createElement('span');
-    span.setAttribute('class', 'checkmark');
-
-    const checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
-    checkbox.checked = todo.done;
-
-    const todoText = document.createElement('span');
-    todoText.setAttribute('class', 'todo');
-    if (checkbox.checked) {
-      todoText.setAttribute('class', 'todo todo-done');
-    }
-    todoText.innerText = todo.desc;
-
-    label.appendChild(todoText);
-    label.appendChild(checkbox);
-    label.appendChild(span);
-
-    toDoLi.appendChild(label);
-    toDoLi.todoObj = todo;
-
-    output.appendChild(toDoLi);
-  }
-}
-
-function addTodo() {
-  if (newTodo.value.length < 5) {
-    return;
-  }
-  const ToDo = newTodo.value;
-  stateTodo.todos.push({ desc: ToDo, done: false });
-  newTodo.value = '';
-  renderTodos(todos);
-  saveStateTodo(stateTodo);
-}
-
-function saveStateTodo(stateTodo) {
-  localStorage.setItem('stateTodo', JSON.stringify(stateTodo));
-}
+filterRadio.addEventListener('change', function (e) {
+  const filterType = e.target.value;
+  todoApp.state.filter = filterType;
+  todoApp.saveState();
+  todoApp.changeFilter(filterType);
+});

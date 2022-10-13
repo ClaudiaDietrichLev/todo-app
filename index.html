@@ -14,11 +14,16 @@
       <h1>ToDo App</h1>
     </header>
     <main>
-      <header>
+      <section>
         <form class="add" onsubmit="return false">
-          <input type="text" id="new-todo" placeholder="Get sh*t done!" />
+          <input
+            class="new-todo"
+            type="text"
+            id="new-todo"
+            placeholder="Get sh*t done!"
+          />
           <label for="new-todo" class="visually-hidden">new ToDo</label>
-          <button id="add-button" class="btn">Add</button>
+          <button id="add-button" class="button button--add">Add</button>
         </form>
         <section class="filter-options">
           <h2>Filter & Options</h2>
@@ -54,12 +59,22 @@
               <span class="checkmark-filter"></span>
             </label>
           </div>
-          <button class="btn remove">Remove Done Todos</button>
+          <button id="delete-button" class="button button--remove">
+            Remove Done Todos
+          </button>
         </section>
-      </header>
+      </section>
       <section>
         <h2 class="output">Your ToDos</h2>
-        <ul id="todo-list"></ul>
+        <ul class="todo-list">
+          <li class="todo">
+            <label class="container-todos">
+              <input type="checkbox" class="" id="" />
+              <span class="checkmark"></span>
+              <span class="todo">test</span>
+            </label>
+          </li>
+        </ul>
       </section>
     </main>
     <script src="script.js"></script>
